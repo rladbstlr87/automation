@@ -24,11 +24,11 @@ for i in range(5):
     
     li_list = soup.select('#main > div > div.col-sm-8.blog-main > div.blog-post.question > ul > li')
     options = [
-        re.sub(r'^(①|②|③|④)(?!\s)', r'\1 ', li.get_text(strip=True))
+        re.sub(r'^(①|②|③|④)', r'\1 ', li.get_text(strip=True))
         for li in li_list
     ]
 
-    print('\n' + f'{question}\n' + '\n'.join(options))
+    print('\n' + f'{i+1}. {question}\n' + '\n'.join(options))
 
     try:
         next_question = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-info')
