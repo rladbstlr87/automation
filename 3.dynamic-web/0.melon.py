@@ -26,7 +26,8 @@ for i in range(10): # range는 오름차순 순위 지정
 
     # 발매일 정보를 특정
     publish_data = driver.find_element(By.CSS_SELECTOR, 'dl.list > dd:nth-of-type(2)').text
-    like = driver.find_element(By.CSS_SELECTOR, '#d_like_count')
+    like = driver.find_element(By.CSS_SELECTOR, '#d_like_count').text
+    like = like.replace(',', '')
 
     song_list.append(
         [
@@ -41,7 +42,7 @@ for i in range(10): # range는 오름차순 순위 지정
 
 local_file_path = '/Users/m2/damf2/data/melon/'
 
-def save_to_scv(song_list):
+def save_to_csv(song_list):
     with open(local_file_path + 'melon-top100.csv', 'w', encoding='utf-8') as file: # 정규화 해도 됨
         writer = csv.writer(file)
         writer.writerows(song_list)
